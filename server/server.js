@@ -32,10 +32,12 @@ app.post('/comments', async (req, res) => {
   } = req.body;
   console.log(name, description);
 
+  // Destructure rows from comment at later point
   const comment = await db.query(
     `INSERT INTO comments (name, description) VALUES ($1, $2) RETURNING *`,
     [name, description]
   );
+
   console.log(comment.rows[0]);
   res.json(comment.rows[0]);
 });
