@@ -7,6 +7,34 @@
   font-family: Poppins;
 }
 
-textarea {
+header {
+  height: 100px;
+}
+
+.container {
+  display: flex;
+  width: 90%;
+  margin: auto;
+}
+
+.add-comment-form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-comment-form textarea {
+  width: auto;
   resize: none;
+}
+
+.comment-container {
+  width: 50%;
+}
+
+.comment {
+  margin: 20px;
+  padding: 20px 10px;
+  border: 2px solid black;
+  border-radius: 4px;
 }

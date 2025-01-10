@@ -12,14 +12,18 @@
         <h1>Leave a comment</h1>
       </header>
 
-      <form class="add-comment-form">
-        <label for="name">Leave a comment:</label>
-        <input type="text" name="name" id="name" />
-        <textarea name="description" id="description"></textarea>
-        <button type="submit">Submit</button>
-      </form>
+      <main class="container">
+        <form class="add-comment-form">
+          <label for="name">Name:</label>
+          <input type="text" name="name" id="name" />
 
-      <div class="comment-container"></div>
+          <label for="description">Description:</label>
+          <textarea name="description" id="description"></textarea>
+          <button type="submit">Submit</button>
+        </form>
+
+        <div class="comment-container"></div>
+      </main>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
