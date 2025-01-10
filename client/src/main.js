@@ -16,4 +16,13 @@ const handleFormSubmit = (e) => {
   addCommentForm.reset();
 };
 
+const BASE_URL = 'http://localhost:8080';
+const fetchComments = async () => {
+  const response = await fetch(`${BASE_URL}/comments`);
+  const data = await response.json();
+  console.log(data);
+};
+
+fetchComments();
+
 addCommentForm.addEventListener('submit', handleFormSubmit);
