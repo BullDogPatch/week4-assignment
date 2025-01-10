@@ -17,11 +17,30 @@ const handleFormSubmit = (e) => {
 };
 
 const BASE_URL = 'http://localhost:8080';
+
 const fetchComments = async () => {
   const response = await fetch(`${BASE_URL}/comments`);
   const data = await response.json();
-  // console.log(data);
-  data.forEach((comment) => console.log(comment));
+  data.forEach((comment) => {
+    // will destructure everything out the comment later to make it more readable
+    const commentDiv = document.createElement('div');
+    commentDiv.className = 'comment';
+
+    const username = document.createElement('p');
+    username.textContent = comment.name;
+
+    const commentText = document.createElement('p');
+    commentText.textContent = comment.description;
+
+    const commentDate = document.createElement('p');
+    commentDate.textContent = comment.created_at;
+
+    commentDiv.appendChild(username);
+    commentDiv.appendChild(commentText);
+    commentDiv.appendChild(commentDate);
+
+    console.log(commentDiv);
+  });
 };
 
 fetchComments();
