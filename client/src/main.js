@@ -41,6 +41,13 @@ function createParagraph(className, text) {
   return p;
 }
 
+function createButton(className, text) {
+  const button = document.createElement('button');
+  button.className = className;
+  button.textContent = text;
+  return button;
+}
+
 // Had to make this function because I need to create a comment for every item that is looped from the fetch, but also need to create a comment on a a submit so no point writing it twice
 function createComment(comment) {
   const commentDiv = document.createElement('div');
@@ -49,10 +56,12 @@ function createComment(comment) {
   const username = createParagraph('username', comment.name);
   const commentText = createParagraph('description', comment.description);
   const commentDate = createParagraph('date', comment.created_at);
+  const deleteButton = createButton('delete-btn', 'Delete');
 
   commentDiv.appendChild(username);
   commentDiv.appendChild(commentText);
   commentDiv.appendChild(commentDate);
+  commentDiv.appendChild(deleteButton);
 
   commentContainer.appendChild(commentDiv);
 }
