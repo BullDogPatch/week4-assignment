@@ -27,7 +27,10 @@ app.get('/comments', async (req, res) => {
 });
 
 app.post('/comments', (req, res) => {
-  console.log('This is req.body', req.body);
+  const {
+    data: { name, description },
+  } = req.body;
+  console.log(name, description);
   res.json({ status: 'Message received' });
 });
 
