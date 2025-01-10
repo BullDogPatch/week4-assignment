@@ -74,4 +74,20 @@ button[type='submit']:hover {
   padding: 20px 10px;
   border: 2px solid black;
   border-radius: 4px;
+  position: relative;
+}
+
+.comment .delete-btn {
+  width: 100px;
+  background-color: #4caf50;
+  color: white;
+  padding: 5px 7px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
