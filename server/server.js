@@ -42,6 +42,7 @@ app.post('/comments', async (req, res) => {
 
 app.delete('/comments', async (req, res) => {
   const { id } = req.body;
+  // this is a rework of this https://abedshamia.hashnode.dev/crud-rest-api-application-using-nodejs-expressjs-and-postgresql-the-beginners-guide#heading-deleteproduct
   try {
     const result = await db.query('DELETE FROM comments WHERE id = $1', [id]);
 
