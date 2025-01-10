@@ -13,8 +13,8 @@ const handleFormSubmit = (e) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ data }),
-  });
-  createComment(data);
+  }).then(() => fetchComments());
+  // createComment(data);
 
   addCommentForm.reset();
 };
@@ -24,7 +24,10 @@ const BASE_URL = 'http://localhost:8080';
 const fetchComments = async () => {
   const response = await fetch(`${BASE_URL}/comments`);
   const data = await response.json();
-  data.forEach((comment) => createComment(comment));
+  commentContainer.innerHTML = '';
+  data
+    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+    .forEach((comment) => createComment(comment));
 };
 
 fetchComments();
