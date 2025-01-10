@@ -26,12 +26,18 @@ app.get('/comments', async (req, res) => {
   res.json(query.rows);
 });
 
-app.post('/comments', (req, res) => {
+app.post('/comments', async (req, res) => {
   const {
     data: { name, description },
   } = req.body;
   console.log(name, description);
-  res.json({ status: 'Message received' });
+
+  const comment = await db.query(
+    `INSERT INTO comments (name, description) VALUES ($1, $2) RETURNING *`,
+    [name, description]
+  );
+  console.log(comment.rows[0]);
+  res.json(comment.rows[0]);
 });
 
 const PORT = 8080;
