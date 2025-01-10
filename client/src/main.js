@@ -51,6 +51,5 @@ function createComment(comment) {
   commentDiv.appendChild(commentText);
   commentDiv.appendChild(commentDate);
 
-  console.log(commentDiv);
   commentContainer.appendChild(commentDiv);
 }
