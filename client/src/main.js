@@ -14,6 +14,8 @@ const handleFormSubmit = (e) => {
     },
     body: JSON.stringify({ data }),
   });
+  createComment(data);
+
   addCommentForm.reset();
 };
 
@@ -23,25 +25,12 @@ const fetchComments = async () => {
   const response = await fetch(`${BASE_URL}/comments`);
   const data = await response.json();
   data.forEach((comment) => {
-    // will destructure everything out the comment later to make it more readable
-    const commentDiv = document.createElement('div');
-    commentDiv.className = 'comment';
-
-    const username = createParagraph('username', comment.name);
-    const commentText = createParagraph('description', comment.description);
-    const commentDate = createParagraph('date', comment.created_at);
-
-    commentDiv.appendChild(username);
-    commentDiv.appendChild(commentText);
-    commentDiv.appendChild(commentDate);
-
-    console.log(commentDiv);
-    commentContainer.appendChild(commentDiv);
+    console.log(data);
+    createComment(comment);
   });
 };
 
 fetchComments();
-
 addCommentForm.addEventListener('submit', handleFormSubmit);
 
 // Make reusable function to create paragraph tag as it makes more sense than to keep using document.createElement for all three p tags
@@ -50,4 +39,21 @@ function createParagraph(className, text) {
   p.className = className;
   p.textContent = text;
   return p;
+}
+
+// Had to make this function because I need to create a comment for every item that is looped from the fetch, but also need to create a comment on a a submit so no point writing it twice
+function createComment(comment) {
+  const commentDiv = document.createElement('div');
+  commentDiv.className = 'comment';
+
+  const username = createParagraph('username', comment.name);
+  const commentText = createParagraph('description', comment.description);
+  const commentDate = createParagraph('date', comment.created_at);
+
+  commentDiv.appendChild(username);
+  commentDiv.appendChild(commentText);
+  commentDiv.appendChild(commentDate);
+
+  console.log(commentDiv);
+  commentContainer.appendChild(commentDiv);
 }
