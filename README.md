@@ -14,5 +14,21 @@
 🎯 Create a working POST API route in your client.  
 🎯 Seed your database with realistic-looking ‘dummy’ data through the Supabase query editor or a seed file in your server. Ensure that this is saved and submitted (in a screenshot or seed file form) so it can be marked and tested efficiently.
 
+### Stretch User Stories
+
+🐿️ As a user, I want additional functionality on the form such as form validation so that I can have a more interactive experience when submitting my information.  
+🐿️ As a user, I want the website to be visually impressive and user-friendly so that it provides a pleasant browsing experience.  
+🐿️ As a user, I would like to be able to delete posts.  
+🐿️ As a user, I would like to be able to like messages so I can show my appreciation to other users.  
+🐿️ As a user, toggle and hide form on small screen (Joe's idea).
+🐿️ As a user, would like to toggle dark/light theme.
+
+### Stretch Requirements
+
+🏹 Provide additional functionality on the form, for example, by adding form validation or other options.  
+🏹 Style the page excellently, for example, by adding extra UX considerations or animations.  
+🏹 Add a delete button to each message and a DELETE route in the server.  
+🏹 Create an option for users to like others’ posts.
+
 Deployed frontend: https://week4-assignment-1.onrender.com/
 Deployed backend: https://week4-assignment-mqdw.onrender.com/comments
