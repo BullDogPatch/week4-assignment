@@ -13,6 +13,7 @@ const handleFormSubmit = (e) => {
     },
     body: JSON.stringify({ data }),
   });
+  addCommentForm.reset();
 };
 
 addCommentForm.addEventListener('submit', handleFormSubmit);
