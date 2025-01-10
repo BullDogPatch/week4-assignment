@@ -13,3 +13,5 @@
 🎯 Create a working GET API route in your server.  
 🎯 Create a working POST API route in your client.  
 🎯 Seed your database with realistic-looking ‘dummy’ data through the Supabase query editor or a seed file in your server. Ensure that this is saved and submitted (in a screenshot or seed file form) so it can be marked and tested efficiently.
+
+Deployed backend: https://week4-assignment-mqdw.onrender.com/comments
