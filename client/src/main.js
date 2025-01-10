@@ -18,12 +18,14 @@ const handleFormSubmit = (e) => {
 
   addCommentForm.reset();
 };
+addCommentForm.addEventListener('submit', handleFormSubmit);
 
 const BASE_URL = 'http://localhost:8080';
 
 const fetchComments = async () => {
   const response = await fetch(`${BASE_URL}/comments`);
   const data = await response.json();
+  // console.log(data);
   commentContainer.innerHTML = '';
   data
     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
@@ -31,7 +33,10 @@ const fetchComments = async () => {
 };
 
 fetchComments();
-addCommentForm.addEventListener('submit', handleFormSubmit);
+
+function handleDeleteComment() {
+  console.log(this);
+}
 
 // Make reusable function to create paragraph tag as it makes more sense than to keep using document.createElement for all three p tags
 function createParagraph(className, text) {
@@ -52,11 +57,14 @@ function createButton(className, text) {
 function createComment(comment) {
   const commentDiv = document.createElement('div');
   commentDiv.className = 'comment';
+  commentDiv.dataset.id = comment.id;
 
   const username = createParagraph('username', comment.name);
   const commentText = createParagraph('description', comment.description);
   const commentDate = createParagraph('date', comment.created_at);
   const deleteButton = createButton('delete-btn', 'Delete');
+
+  deleteButton.addEventListener('click', handleDeleteComment);
 
   commentDiv.appendChild(username);
   commentDiv.appendChild(commentText);

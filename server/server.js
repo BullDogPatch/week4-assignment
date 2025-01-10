@@ -38,7 +38,6 @@ app.post('/comments', async (req, res) => {
     [name, description]
   );
 
-  console.log(comment.rows[0]);
   res.json(comment.rows[0]);
 });
 
