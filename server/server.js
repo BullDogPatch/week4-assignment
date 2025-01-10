@@ -40,5 +40,7 @@ app.post('/comments', async (req, res) => {
   res.json(comment.rows[0]);
 });
 
+// not sure if RETURNING * is needed as if I want to log I need it, but without RETURNING * it still goes to supabase and get my data on localhost
+
 const PORT = 8080;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
