@@ -35,8 +35,18 @@ const fetchComments = async () => {
 fetchComments();
 
 function handleDeleteComment() {
-  const id = this.closest('div').dataset.id;
-  console.log(`Deleting comment id`, id);
+  const commentDiv = this.closest('div');
+  const id = commentDiv.dataset.id;
+  console.log(id);
+  console.log('Delete request sent at:', new Date().toISOString());
+
+  fetch('http://localhost:8080/comments', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id }),
+  });
 }
 
 // Make reusable function to create paragraph tag as it makes more sense than to keep using document.createElement for all three p tags

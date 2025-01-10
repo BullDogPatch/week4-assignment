@@ -30,7 +30,6 @@ app.post('/comments', async (req, res) => {
   const {
     data: { name, description },
   } = req.body;
-  console.log(name, description);
 
   // Destructure rows from comment at later point
   const comment = await db.query(
@@ -39,6 +38,12 @@ app.post('/comments', async (req, res) => {
   );
 
   res.json(comment.rows[0]);
+});
+
+app.delete('/comments', async (req, res) => {
+  console.log('Delete request received at:', new Date().toISOString());
+  const { id } = req.body;
+  console.log(id);
 });
 
 // not sure if RETURNING * is needed as if I want to log I need it, but without RETURNING * it still goes to supabase and get my data on localhost
