@@ -6,7 +6,6 @@ import pg from 'pg';
 dotenv.config();
 
 const dbConnectionString = process.env.DATABASE_URL;
-console.log(dbConnectionString);
 const db = new pg.Pool({
   connectionString: dbConnectionString,
 });
@@ -25,6 +24,11 @@ app.get('/', (req, res) => {
 app.get('/comments', async (req, res) => {
   const query = await db.query(`SELECT * FROM comments`);
   res.json(query.rows);
+});
+
+app.post('/comments', (req, res) => {
+  console.log('This is req.body', req.body);
+  res.json({ status: 'Message received' });
 });
 
 const PORT = 8080;
