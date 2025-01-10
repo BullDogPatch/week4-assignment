@@ -5,7 +5,14 @@ const handleFormSubmit = (e) => {
 
   const formData = new FormData(addCommentForm);
   const data = Object.fromEntries(formData);
-  console.log(data);
+
+  fetch('http://localhost:8080/comments', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ data }),
+  });
 };
 
 addCommentForm.addEventListener('submit', handleFormSubmit);
