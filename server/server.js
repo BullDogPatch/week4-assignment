@@ -41,9 +41,16 @@ app.post('/comments', async (req, res) => {
 });
 
 app.delete('/comments', async (req, res) => {
-  console.log('Delete request received at:', new Date().toISOString());
   const { id } = req.body;
-  console.log(id);
+  try {
+    const result = await db.query('DELETE FROM comments WHERE id = $1', [id]);
+
+    if (result.rowCount > 0) {
+      res.status(200).json({ message: 'Delete request processed' });
+    }
+  } catch (error) {
+    console.error('Error deleting comment:', error);
+  }
 });
 
 // not sure if RETURNING * is needed as if I want to log I need it, but without RETURNING * it still goes to supabase and get my data on localhost
