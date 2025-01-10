@@ -7,7 +7,7 @@ const handleFormSubmit = (e) => {
   const formData = new FormData(addCommentForm);
   const data = Object.fromEntries(formData);
 
-  fetch('http://localhost:8080/comments', {
+  fetch('https://week4-assignment-mqdw.onrender.com/comments', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ const handleFormSubmit = (e) => {
 };
 addCommentForm.addEventListener('submit', handleFormSubmit);
 
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = 'https://week4-assignment-mqdw.onrender.com';
 
 // const fetchComments = async () => {
 //   const response = await fetch(`${BASE_URL}/comments`);
