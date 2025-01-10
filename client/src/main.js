@@ -1,4 +1,5 @@
 const addCommentForm = document.querySelector('.add-comment-form');
+const commentContainer = document.querySelector('.comment-container');
 
 const handleFormSubmit = (e) => {
   e.preventDefault();
@@ -26,23 +27,27 @@ const fetchComments = async () => {
     const commentDiv = document.createElement('div');
     commentDiv.className = 'comment';
 
-    const username = document.createElement('p');
-    username.textContent = comment.name;
-
-    const commentText = document.createElement('p');
-    commentText.textContent = comment.description;
-
-    const commentDate = document.createElement('p');
-    commentDate.textContent = comment.created_at;
+    const username = createParagraph('username', comment.name);
+    const commentText = createParagraph('description', comment.description);
+    const commentDate = createParagraph('date', comment.created_at);
 
     commentDiv.appendChild(username);
     commentDiv.appendChild(commentText);
     commentDiv.appendChild(commentDate);
 
     console.log(commentDiv);
+    commentContainer.appendChild(commentDiv);
   });
 };
 
 fetchComments();
 
 addCommentForm.addEventListener('submit', handleFormSubmit);
+
+// Make reusable function to create paragraph tag as it makes more sense than to keep using document.createElement for all three p tags
+function createParagraph(className, text) {
+  const p = document.createElement('p');
+  p.className = className;
+  p.textContent = text;
+  return p;
+}
