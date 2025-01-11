@@ -132,3 +132,11 @@ function createComment(comment) {
 
   commentContainer.appendChild(commentDiv);
 }
+
+// This is a modified version of week 2 assignment
+addCommentForm.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && e.ctrlKey) {
+    e.preventDefault();
+    handleFormSubmit(e);
+  }
+});
