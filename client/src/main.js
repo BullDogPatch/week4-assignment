@@ -142,6 +142,19 @@ function createComment(comment) {
 addCommentForm.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' && e.ctrlKey) {
     e.preventDefault();
+    const nameInput = addCommentForm.querySelector('input');
+    const description = addCommentForm.querySelector('textarea');
+
+    if (nameInput.value === '' || description.value === '') {
+      alert('Fields can NOT be left empty');
+      return;
+    }
+
+    if (description.value.length < 20) {
+      alert('Minimum of 20 characters please');
+      return;
+    }
+
     handleFormSubmit(e);
   }
 });
