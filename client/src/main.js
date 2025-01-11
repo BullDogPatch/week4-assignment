@@ -53,6 +53,7 @@ const fetchComments = async () => {
 
 fetchComments();
 
+// LEAVE THIS FOR NOW< NEED TO RESEARCH MORE (easier if this is React)
 async function fetchCommentById() {
   const commentDiv = this.closest('div');
   const id = commentDiv.dataset.id;
@@ -112,10 +113,8 @@ function createComment(comment) {
   const commentText = createParagraph('description', comment.description);
   const commentDate = createParagraph('date', comment.created_at);
   const deleteButton = createButton('delete-btn', 'Delete');
-  const goToCommentByIdButton = createButton('btn', 'Go');
 
   deleteButton.addEventListener('click', handleDeleteComment);
-  goToCommentByIdButton.addEventListener('click', fetchCommentById);
 
   commentDiv.appendChild(username);
   commentDiv.appendChild(commentText);
