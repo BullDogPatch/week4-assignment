@@ -53,13 +53,16 @@ const fetchComments = async () => {
 
 fetchComments();
 
-const fetchCommentById = async (id) => {
+async function fetchCommentById() {
+  const commentDiv = this.closest('div');
+  const id = commentDiv.dataset.id;
+  console.log(id);
   try {
     const response = await fetch(`${BASE_URL}/comments/${id}`);
-    const data = response.json();
+    const data = await response.json();
     console.log(data);
   } catch (error) {}
-};
+}
 
 async function handleDeleteComment() {
   // Joe gave me the idea for getting id from setting a dataset to comment
@@ -109,13 +112,16 @@ function createComment(comment) {
   const commentText = createParagraph('description', comment.description);
   const commentDate = createParagraph('date', comment.created_at);
   const deleteButton = createButton('delete-btn', 'Delete');
+  const goToCommentByIdButton = createButton('btn', 'Go');
 
   deleteButton.addEventListener('click', handleDeleteComment);
+  goToCommentByIdButton.addEventListener('click', fetchCommentById);
 
   commentDiv.appendChild(username);
   commentDiv.appendChild(commentText);
   commentDiv.appendChild(commentDate);
   commentDiv.appendChild(deleteButton);
+  commentDiv.appendChild(goToCommentByIdButton);
 
   commentContainer.appendChild(commentDiv);
 }
