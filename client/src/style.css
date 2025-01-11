@@ -109,18 +109,4 @@ button[type='submit']:hover {
 }
 
 @media (max-width: 800px) {
-  .comment .delete-btn {
-    width: 70px;
-    background-color: #4caf50;
-    color: white;
-    padding: 2px 4px;
-    margin: 4px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-transform: uppercase;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-  }
 }
