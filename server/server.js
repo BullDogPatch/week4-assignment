@@ -26,6 +26,13 @@ app.get('/comments', async (req, res) => {
   res.json(query.rows);
 });
 
+app.get('/comments/:id', async (req, res) => {
+  const { id } = req.params;
+  const query = await db.query(`SELECT * FROM comments WHERE id = $1`, [id]);
+  console.log(query);
+  res.json(query.rows[0]);
+});
+
 app.post('/comments', async (req, res) => {
   const {
     data: { name, description },
