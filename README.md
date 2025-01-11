@@ -30,5 +30,9 @@
 🏹 Add a delete button to each message and a DELETE route in the server.  
 🏹 Create an option for users to like others’ posts.
 
+### Goals
+
+Have basic validation come on the form for 2 seconds so that when user submits with less than so many characters it gives a little message.
+
 Deployed frontend: https://week4-assignment-1.onrender.com/
 Deployed backend: https://week4-assignment-mqdw.onrender.com/comments
