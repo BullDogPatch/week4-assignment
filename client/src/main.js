@@ -96,9 +96,10 @@ function createParagraph(className, text) {
   return p;
 }
 
-function createButton(className) {
+function createButton(className, text) {
   const button = document.createElement('i');
   button.className = className;
+  button.title = text;
   return button;
 }
 
@@ -117,7 +118,10 @@ function createComment(comment) {
 
   // https://stackoverflow.com/questions/60672126/how-to-format-a-javascript-date-object-using-intl-datetimeformat
   const commentDate = createParagraph('date', formattedDate);
-  const deleteButton = createButton('fa-solid fa-xmark delete-btn');
+  const deleteButton = createButton(
+    'fa-solid fa-xmark delete-btn',
+    'delete comment'
+  );
 
   deleteButton.addEventListener('click', handleDeleteComment);
 
