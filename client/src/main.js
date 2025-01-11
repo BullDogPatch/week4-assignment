@@ -1,5 +1,7 @@
 const addCommentForm = document.querySelector('.add-comment-form');
 const commentContainer = document.querySelector('.comment-container');
+const toggleFormButton = document.querySelector('.toggle-form');
+const BASE_URL = 'http://localhost:8080';
 
 const handleFormSubmit = (e) => {
   e.preventDefault();
@@ -7,39 +9,25 @@ const handleFormSubmit = (e) => {
   const formData = new FormData(addCommentForm);
   const data = Object.fromEntries(formData);
 
-  fetch('https://week4-assignment-mqdw.onrender.com/comments', {
+  fetch(`${BASE_URL}/comments`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ data }),
   }).then(() => fetchComments());
-  // createComment(data);
 
   addCommentForm.reset();
 };
 addCommentForm.addEventListener('submit', handleFormSubmit);
-
-const BASE_URL = 'https://week4-assignment-mqdw.onrender.com';
-
-// const fetchComments = async () => {
-//   const response = await fetch(`${BASE_URL}/comments`);
-//   const data = await response.json();
-//   // console.log(data);
-//   commentContainer.innerHTML = '';
-//   data
-//     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-//     .forEach((comment) => createComment(comment));
-// };
 
 const fetchComments = async () => {
   try {
     const response = await fetch(`${BASE_URL}/comments`);
     if (response.ok) {
       const data = await response.json();
-      commentContainer.innerHTML = ''; // Clear existing comments
+      commentContainer.innerHTML = '';
 
-      // Sort the comments and render them
       data
         .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
         .forEach((comment) => createComment(comment));
@@ -53,6 +41,18 @@ const fetchComments = async () => {
 
 fetchComments();
 
+// LEAVE THIS FOR NOW< NEED TO RESEARCH MORE (easier if this is React)
+async function fetchCommentById() {
+  const commentDiv = this.closest('div');
+  const id = commentDiv.dataset.id;
+  console.log(id);
+  try {
+    const response = await fetch(`${BASE_URL}/comments/${id}`);
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {}
+}
+
 async function handleDeleteComment() {
   // Joe gave me the idea for getting id from setting a dataset to comment
   const commentDiv = this.closest('div');
@@ -60,16 +60,13 @@ async function handleDeleteComment() {
 
   // this is a rework of this https://medium.com/@tejasshahade5/how-to-post-data-to-the-server-using-fetch-method-b961ae18d6fb
   try {
-    const response = await fetch(
-      'https://week4-assignment-mqdw.onrender.com/comments',
-      {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id }),
-      }
-    );
+    const response = await fetch(`${BASE_URL}/comments`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id }),
+    });
 
     if (response.ok) {
       await fetchComments();
@@ -88,9 +85,9 @@ function createParagraph(className, text) {
 }
 
 function createButton(className, text) {
-  const button = document.createElement('button');
+  const button = document.createElement('i');
   button.className = className;
-  button.textContent = text;
+  button.title = text;
   return button;
 }
 
@@ -102,8 +99,17 @@ function createComment(comment) {
 
   const username = createParagraph('username', comment.name);
   const commentText = createParagraph('description', comment.description);
-  const commentDate = createParagraph('date', comment.created_at);
-  const deleteButton = createButton('delete-btn', 'Delete');
+
+  const formattedDate = new Intl.DateTimeFormat('en-GB').format(
+    new Date(comment.created_at)
+  );
+
+  // https://stackoverflow.com/questions/60672126/how-to-format-a-javascript-date-object-using-intl-datetimeformat
+  const commentDate = createParagraph('date', formattedDate);
+  const deleteButton = createButton(
+    'fa-solid fa-xmark delete-btn',
+    'delete comment'
+  );
 
   deleteButton.addEventListener('click', handleDeleteComment);
 
@@ -114,3 +120,21 @@ function createComment(comment) {
 
   commentContainer.appendChild(commentDiv);
 }
+
+// This is a modified version of week 2 assignment
+addCommentForm.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && e.ctrlKey) {
+    e.preventDefault();
+    handleFormSubmit(e);
+  }
+});
+
+toggleFormButton.addEventListener('click', () => {
+  if (addCommentForm.classList.contains('hide')) {
+    toggleFormButton.textContent = 'Hide form';
+    addCommentForm.classList.remove('hide');
+  } else {
+    toggleFormButton.textContent = 'Show form';
+    addCommentForm.classList.add('hide');
+  }
+});
