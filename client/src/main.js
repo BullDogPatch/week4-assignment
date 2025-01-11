@@ -2,26 +2,40 @@ const addCommentForm = document.querySelector('.add-comment-form');
 const commentContainer = document.querySelector('.comment-container');
 const toggleFormButton = document.querySelector('.toggle-form');
 const chooseTheme = document.querySelector('.theme-toggler');
+let darkMode = localStorage.getItem('dark-mode');
 
-// const BASE_URL = 'http://localhost:8080';
-const BASE_URL = 'https://week4-assignment-mqdw.onrender.com';
+const BASE_URL = 'http://localhost:8080';
+// const BASE_URL = 'https://week4-assignment-mqdw.onrender.com';
 
-const handleFormSubmit = (e) => {
+const handleFormSubmit = async (e) => {
   e.preventDefault();
 
   const formData = new FormData(addCommentForm);
   const data = Object.fromEntries(formData);
 
-  fetch(`${BASE_URL}/comments`, {
+  const response = await fetch(`${BASE_URL}/comments`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ data }),
-  }).then(() => fetchComments());
+  });
+
+  try {
+    if (response.ok) {
+      await fetchComments();
+      const sound = new Audio('sounds/quick-swhooshing-noise-80898.mp3');
+      sound.play();
+    } else {
+      console.log("Coudln't get comments");
+    }
+  } catch (error) {
+    console.log('Error:', error);
+  }
 
   addCommentForm.reset();
 };
+
 addCommentForm.addEventListener('submit', handleFormSubmit);
 
 const fetchComments = async () => {
@@ -128,6 +142,8 @@ function createComment(comment) {
 addCommentForm.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' && e.ctrlKey) {
     e.preventDefault();
+    const sound = new Audio('sounds/quick-swhooshing-noise-80898.mp3');
+    sound.play();
     handleFormSubmit(e);
   }
 });
@@ -144,15 +160,18 @@ toggleFormButton.addEventListener('click', () => {
 
 // Dark mode
 const body = document.querySelector('body');
-let darkMode = localStorage.getItem('dark-mode');
 
 const enableLightMode = () => {
   body.classList.add('light');
+  chooseTheme.textContent = 'Dark Mode';
+
   localStorage.setItem('dark-mode', 'enabled');
 };
 
 const disableLightMode = () => {
   body.classList.remove('light');
+  chooseTheme.textContent = 'Light Mode';
+
   localStorage.setItem('dark-mode', 'disabled');
 };
 
@@ -164,9 +183,7 @@ chooseTheme.addEventListener('click', (e) => {
   darkMode = localStorage.getItem('dark-mode'); // update darkMode when clicked
   if (darkMode === 'disabled') {
     enableLightMode();
-    chooseTheme.textContent = 'Dark Mode';
   } else {
     disableLightMode();
-    chooseTheme.textContent = 'Light Mode';
   }
 });
