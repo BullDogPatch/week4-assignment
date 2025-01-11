@@ -1,6 +1,8 @@
 const addCommentForm = document.querySelector('.add-comment-form');
 const commentContainer = document.querySelector('.comment-container');
 const toggleFormButton = document.querySelector('.toggle-form');
+const chooseTheme = document.querySelector('.theme-toggler');
+
 const BASE_URL = 'http://localhost:8080';
 
 const handleFormSubmit = (e) => {
@@ -136,5 +138,34 @@ toggleFormButton.addEventListener('click', () => {
   } else {
     toggleFormButton.textContent = 'Show form';
     addCommentForm.classList.add('hide');
+  }
+});
+
+// Dark mode
+const body = document.querySelector('body');
+let darkMode = localStorage.getItem('dark-mode');
+
+const enableLightMode = () => {
+  body.classList.add('light');
+  localStorage.setItem('dark-mode', 'enabled');
+};
+
+const disableLightMode = () => {
+  body.classList.remove('light');
+  localStorage.setItem('dark-mode', 'disabled');
+};
+
+if (darkMode === 'enabled') {
+  enableLightMode(); // set state of darkMode on page load
+}
+
+chooseTheme.addEventListener('click', (e) => {
+  darkMode = localStorage.getItem('dark-mode'); // update darkMode when clicked
+  if (darkMode === 'disabled') {
+    enableLightMode();
+    chooseTheme.textContent = 'Dark Mode';
+  } else {
+    disableLightMode();
+    chooseTheme.textContent = 'Light Mode';
   }
 });

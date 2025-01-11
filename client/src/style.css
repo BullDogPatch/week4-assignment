@@ -8,7 +8,14 @@
 }
 
 body {
-  height: 100vh;
+  font-family: 'Poppins', serif;
+  background-color: #121212;
+  color: white;
+}
+
+.light {
+  color: black;
+  background-color: #f8fafc;
 }
 
 header {
@@ -78,9 +85,13 @@ button[type='submit']:hover {
 .comment {
   margin: 20px;
   padding: 15px 20px;
-  border: 2px solid black;
+  border: 2px solid #ccc;
   border-radius: 4px;
   position: relative;
+}
+
+.light .comment {
+  border: 2px solid black;
 }
 
 .comment .username {
