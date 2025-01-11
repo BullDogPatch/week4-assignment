@@ -1,6 +1,7 @@
 const addCommentForm = document.querySelector('.add-comment-form');
 const commentContainer = document.querySelector('.comment-container');
 const toggleFormButton = document.querySelector('.toggle-form');
+const BASE_URL = 'http://localhost:8080';
 
 const handleFormSubmit = (e) => {
   e.preventDefault();
@@ -8,7 +9,7 @@ const handleFormSubmit = (e) => {
   const formData = new FormData(addCommentForm);
   const data = Object.fromEntries(formData);
 
-  fetch('http://localhost:8080/comments', {
+  fetch(`${BASE_URL}/comments`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -19,18 +20,6 @@ const handleFormSubmit = (e) => {
   addCommentForm.reset();
 };
 addCommentForm.addEventListener('submit', handleFormSubmit);
-
-const BASE_URL = 'http://localhost:8080';
-
-// const fetchComments = async () => {
-//   const response = await fetch(`${BASE_URL}/comments`);
-//   const data = await response.json();
-//   // console.log(data);
-//   commentContainer.innerHTML = '';
-//   data
-//     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-//     .forEach((comment) => createComment(comment));
-// };
 
 const fetchComments = async () => {
   try {
@@ -71,7 +60,7 @@ async function handleDeleteComment() {
 
   // this is a rework of this https://medium.com/@tejasshahade5/how-to-post-data-to-the-server-using-fetch-method-b961ae18d6fb
   try {
-    const response = await fetch('http://localhost:8080/comments', {
+    const response = await fetch(`${BASE_URL}/comments`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -151,12 +140,11 @@ addCommentForm.addEventListener('keydown', (e) => {
 // });
 
 toggleFormButton.addEventListener('click', () => {
-  console.log('Button clicked');
   if (addCommentForm.classList.contains('hide')) {
+    toggleFormButton.textContent = 'Hide form';
     addCommentForm.classList.remove('hide');
-    console.log('Form shown');
   } else {
+    toggleFormButton.textContent = 'Show form';
     addCommentForm.classList.add('hide');
-    console.log('Form hidden');
   }
 });
