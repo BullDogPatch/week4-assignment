@@ -129,16 +129,6 @@ addCommentForm.addEventListener('keydown', (e) => {
   }
 });
 
-// toggleFormButton.addEventListener('click', () => {
-//   if (addCommentForm.classList.contains('hide')) {
-//     addCommentForm.classList.remove('hide');
-//   } else {
-//     addCommentForm.classList.add('hide');
-//   }
-
-//   console.log('first');
-// });
-
 toggleFormButton.addEventListener('click', () => {
   if (addCommentForm.classList.contains('hide')) {
     toggleFormButton.textContent = 'Hide form';
