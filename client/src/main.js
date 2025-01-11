@@ -120,7 +120,6 @@ function createComment(comment) {
   commentDiv.appendChild(commentText);
   commentDiv.appendChild(commentDate);
   commentDiv.appendChild(deleteButton);
-  commentDiv.appendChild(goToCommentByIdButton);
 
   commentContainer.appendChild(commentDiv);
 }
