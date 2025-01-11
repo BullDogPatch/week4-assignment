@@ -4,7 +4,7 @@ const toggleFormButton = document.querySelector('.toggle-form');
 const chooseTheme = document.querySelector('.theme-toggler');
 
 // const BASE_URL = 'http://localhost:8080';
-const BASE_URL = 'https://week4-assignment-mqdw.onrender.com/';
+const BASE_URL = 'https://week4-assignment-mqdw.onrender.com';
 
 const handleFormSubmit = (e) => {
   e.preventDefault();
