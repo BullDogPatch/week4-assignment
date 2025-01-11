@@ -87,18 +87,25 @@ button[type='submit']:hover {
 }
 
 .comment .delete-btn {
-  width: 100px;
-  background-color: #4caf50;
+  width: 20px;
+  height: 20px;
+  background-color: red;
   color: white;
-  padding: 5px 7px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  text-transform: uppercase;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  font-weight: bold;
   position: absolute;
   bottom: 10px;
   right: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-btn i {
+  font-weight: bold;
 }
 
 @media (max-width: 800px) {
