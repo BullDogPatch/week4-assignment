@@ -171,7 +171,6 @@ const enableLightMode = () => {
 const disableLightMode = () => {
   body.classList.remove('light');
   chooseTheme.textContent = 'Light Mode';
-
   localStorage.setItem('dark-mode', 'disabled');
 };
 
