@@ -37,9 +37,8 @@ const fetchComments = async () => {
     const response = await fetch(`${BASE_URL}/comments`);
     if (response.ok) {
       const data = await response.json();
-      commentContainer.innerHTML = ''; // Clear existing comments
+      commentContainer.innerHTML = '';
 
-      // Sort the comments and render them
       data
         .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
         .forEach((comment) => createComment(comment));
