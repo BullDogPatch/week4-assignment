@@ -24,11 +24,18 @@ header {
   margin: auto;
 }
 
+.toggle-form {
+  cursor: pointer;
+}
+
 .add-comment-form {
   width: 50%;
   display: flex;
   flex-direction: column;
-  top: 0;
+}
+
+.hide {
+  display: none;
 }
 
 .add-comment-form textarea {

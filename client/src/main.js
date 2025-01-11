@@ -1,5 +1,6 @@
 const addCommentForm = document.querySelector('.add-comment-form');
 const commentContainer = document.querySelector('.comment-container');
+const toggleFormButton = document.querySelector('.toggle-form');
 
 const handleFormSubmit = (e) => {
   e.preventDefault();
@@ -14,7 +15,6 @@ const handleFormSubmit = (e) => {
     },
     body: JSON.stringify({ data }),
   }).then(() => fetchComments());
-  // createComment(data);
 
   addCommentForm.reset();
 };
@@ -137,5 +137,26 @@ addCommentForm.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' && e.ctrlKey) {
     e.preventDefault();
     handleFormSubmit(e);
+  }
+});
+
+// toggleFormButton.addEventListener('click', () => {
+//   if (addCommentForm.classList.contains('hide')) {
+//     addCommentForm.classList.remove('hide');
+//   } else {
+//     addCommentForm.classList.add('hide');
+//   }
+
+//   console.log('first');
+// });
+
+toggleFormButton.addEventListener('click', () => {
+  console.log('Button clicked');
+  if (addCommentForm.classList.contains('hide')) {
+    addCommentForm.classList.remove('hide');
+    console.log('Form shown');
+  } else {
+    addCommentForm.classList.add('hide');
+    console.log('Form hidden');
   }
 });
