@@ -7,7 +7,7 @@ const handleFormSubmit = (e) => {
   const formData = new FormData(addCommentForm);
   const data = Object.fromEntries(formData);
 
-  fetch('https://week4-assignment-mqdw.onrender.com/comments', {
+  fetch('http://localhost:8080/comments', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ const handleFormSubmit = (e) => {
 };
 addCommentForm.addEventListener('submit', handleFormSubmit);
 
-const BASE_URL = 'https://week4-assignment-mqdw.onrender.com';
+const BASE_URL = 'http://localhost:8080';
 
 // const fetchComments = async () => {
 //   const response = await fetch(`${BASE_URL}/comments`);
@@ -60,16 +60,13 @@ async function handleDeleteComment() {
 
   // this is a rework of this https://medium.com/@tejasshahade5/how-to-post-data-to-the-server-using-fetch-method-b961ae18d6fb
   try {
-    const response = await fetch(
-      'https://week4-assignment-mqdw.onrender.com/comments',
-      {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id }),
-      }
-    );
+    const response = await fetch('http://localhost:8080/comments', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id }),
+    });
 
     if (response.ok) {
       await fetchComments();
