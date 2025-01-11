@@ -27,7 +27,7 @@ const handleFormSubmit = async (e) => {
       const sound = new Audio('sounds/quick-swhooshing-noise-80898.mp3');
       sound.play();
     } else {
-      console.log("Coudln't get comments");
+      console.log("Couldn't get comments");
     }
   } catch (error) {
     console.log('Error:', error);
@@ -142,8 +142,6 @@ function createComment(comment) {
 addCommentForm.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' && e.ctrlKey) {
     e.preventDefault();
-    const sound = new Audio('sounds/quick-swhooshing-noise-80898.mp3');
-    sound.play();
     handleFormSubmit(e);
   }
 });
