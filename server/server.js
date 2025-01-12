@@ -26,7 +26,6 @@ app.get('/comments', async (req, res) => {
     const query = await db.query(`SELECT * FROM comments`);
     res.json(query.rows);
   } catch (error) {
-    // console.log(error);
     res.status(500).json({ message: 'Server is borked' });
   }
 });
