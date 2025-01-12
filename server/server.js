@@ -51,7 +51,6 @@ app.post('/comments', async (req, res) => {
     data: { name, description },
   } = req.body;
 
-  // Destructure rows from comment at later point
   const { rows } = await db.query(
     `INSERT INTO comments (name, description) VALUES ($1, $2) RETURNING *`,
     [name, description]
