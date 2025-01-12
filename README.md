@@ -33,6 +33,7 @@
 ### Goals
 
 Have basic validation come on the form for 2 seconds so that when user submits with less than so many characters it gives a little message.
+Style the theme toggle button.
 
 Deployed frontend: https://week4-assignment-1.onrender.com/
 Deployed backend: https://week4-assignment-mqdw.onrender.com/comments
