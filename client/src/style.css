@@ -34,6 +34,7 @@ body {
   border-radius: 50%;
   cursor: pointer;
   border: 2px solid red;
+  font-size: 25px;
 }
 
 .header h1 {
