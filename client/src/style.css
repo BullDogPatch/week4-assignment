@@ -22,15 +22,9 @@ body {
   align-content: center;
   padding: 10px;
   height: 100px;
+  text-align: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-}
-
-.header h1 {
-  text-align: center;
-  flex-grow: 1;
-  font-size: 1.4rem;
 }
 
 .header .theme-toggler {
@@ -40,7 +34,6 @@ body {
   border-radius: 50%;
   cursor: pointer;
   border: 2px solid red;
-  font-size: 25px;
 }
 
 .container {
@@ -195,10 +188,6 @@ button[type='submit']:hover {
 }
 
 @media (min-width: 500px) {
-  .header h1 {
-    font-size: 2rem;
-  }
-
   /* Not sure if there was a better was to do this because if user toggled form on small screen the I want the form to be visible back on normal screen, without this code below it messed style and I don't want to debug it, I want to move on to the next task */
   input[type='text'],
   textarea {
