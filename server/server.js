@@ -34,11 +34,13 @@ app.get('/comments', async (req, res) => {
 app.get('/comments/:id', async (req, res) => {
   const { id } = req.params;
   try {
-    const query = await db.query(`SELECT * FROM comments WHERE id = $1`, [id]);
-    if (query.rows.length === 0) {
+    const { rows } = await db.query(`SELECT * FROM comments WHERE id = $1`, [
+      id,
+    ]);
+    if (rows.length === 0) {
       return res.status(404).json({ message: 'Comment not found' });
     }
-    res.json(query.rows[0]);
+    res.json(rows[0]);
   } catch (error) {
     res.status(500).json({ message: 'Server is borked' });
   }
@@ -50,12 +52,12 @@ app.post('/comments', async (req, res) => {
   } = req.body;
 
   // Destructure rows from comment at later point
-  const comment = await db.query(
+  const { rows } = await db.query(
     `INSERT INTO comments (name, description) VALUES ($1, $2) RETURNING *`,
     [name, description]
   );
 
-  res.json(comment.rows[0]);
+  res.json(rows[0]);
 });
 
 app.delete('/comments', async (req, res) => {
