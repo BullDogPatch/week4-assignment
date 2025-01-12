@@ -31,5 +31,7 @@ My screenshots of my database schema, SQL queries and my wireframe are in the sc
 
 Overall I am 80% happy with what I have acheived with this. Feedback would be great.
 
+Oh, I wanted a loading state for when the comments was loading from database but I didn't have time. Again with React this is something I would have done right at the beginning.
+
 Deployed frontend: https://week4-assignment-1.onrender.com/
 Deployed backend: https://week4-assignment-mqdw.onrender.com/comments
