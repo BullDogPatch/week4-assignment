@@ -104,6 +104,7 @@ button[type='submit']:hover {
   border: 2px solid #ccc;
   border-radius: 4px;
   position: relative;
+  word-wrap: break-word;
 }
 
 .light .comment {
