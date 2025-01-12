@@ -22,15 +22,26 @@ app.get('/', (req, res) => {
 });
 
 app.get('/comments', async (req, res) => {
-  const query = await db.query(`SELECT * FROM comments`);
-  res.json(query.rows);
+  try {
+    const query = await db.query(`SELECT * FROM comments`);
+    res.json(query.rows);
+  } catch (error) {
+    // console.log(error);
+    res.status(500).json({ message: 'Server is borked' });
+  }
 });
 
 app.get('/comments/:id', async (req, res) => {
   const { id } = req.params;
-  const query = await db.query(`SELECT * FROM comments WHERE id = $1`, [id]);
-  console.log(query);
-  res.json(query.rows[0]);
+  try {
+    const query = await db.query(`SELECT * FROM comments WHERE id = $1`, [id]);
+    if (query.rows.length === 0) {
+      return res.status(404).json({ message: 'Comment not found' });
+    }
+    res.json(query.rows[0]);
+  } catch (error) {
+    res.status(500).json({ message: 'Server is borked' });
+  }
 });
 
 app.post('/comments', async (req, res) => {
