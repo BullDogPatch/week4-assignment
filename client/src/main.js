@@ -174,14 +174,18 @@ const body = document.querySelector('body');
 
 const enableLightMode = () => {
   body.classList.add('light');
-  chooseTheme.textContent = 'Dark Mode';
+  chooseTheme.style.backgroundColor = 'black';
+  chooseTheme.textContent = '🌕';
+  chooseTheme.style.fontSize = '25px';
 
   localStorage.setItem('dark-mode', 'enabled');
 };
 
 const disableLightMode = () => {
   body.classList.remove('light');
-  chooseTheme.textContent = 'Light Mode';
+  chooseTheme.style.backgroundColor = 'white';
+  chooseTheme.textContent = '☀️';
+  chooseTheme.style.fontSize = '25px';
   localStorage.setItem('dark-mode', 'disabled');
 };
 
