@@ -59,16 +59,16 @@ const fetchComments = async () => {
 fetchComments();
 
 // LEAVE THIS FOR NOW< NEED TO RESEARCH MORE (easier if this is React)
-async function fetchCommentById() {
-  const commentDiv = this.closest('div');
-  const id = commentDiv.dataset.id;
-  console.log(id);
-  try {
-    const response = await fetch(`${BASE_URL}/comments/${id}`);
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {}
-}
+// async function fetchCommentById() {
+//   const commentDiv = this.closest('div');
+//   const id = commentDiv.dataset.id;
+//   console.log(id);
+//   try {
+//     const response = await fetch(`${BASE_URL}/comments/${id}`);
+//     const data = await response.json();
+//     console.log(data);
+//   } catch (error) {}
+// }
 
 async function handleDeleteComment() {
   // Joe gave me the idea for getting id from setting a dataset to comment
